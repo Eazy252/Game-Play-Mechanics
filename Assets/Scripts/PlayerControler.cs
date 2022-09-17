@@ -6,6 +6,7 @@ public class PlayerControler : MonoBehaviour
 {
     private Rigidbody playerRB;
     public float speed = 6.0f;
+    public bool hasPowerUp;
 
     private GameObject focalPoint;
 
@@ -25,5 +26,15 @@ public class PlayerControler : MonoBehaviour
         playerRB.AddForce(focalPoint.transform.forward * speed * forwardInput);
 
         
+    }
+
+    private void onTriggeEnter(Collider other)
+    {
+        if (other.CompareTag("PowerUp"))
+        {
+            hasPowerUp = true;
+            Destroy(other.gameObject);
+        }
+
     }
 }
